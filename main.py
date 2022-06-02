@@ -21,7 +21,7 @@ def main(file_path):
                     atr.find('name').text = 'Тип'
                     atr.find('values').text = 'Логотип\nНадпись'
                     atr.find('default_value').text = 'Логотип'
-                if atr.find('name').text in value:
+                elif atr.find('name').text in value:
                     if atr.find('name').text in ('Зад', 'Перед', 'Лево', 'Право'):
                         val = '\n'.join(value) + '\nнет уточнения'
                         atr.find('values').text = val.lower()
@@ -54,7 +54,7 @@ def main(file_path):
                     attr.text = attr.attrib['name'].lower()
     #rewrite
 
-    root.write('new.xml', encoding='utf-8')
+    root.write(f"{file_path.split('.')[0]}+_new.xml", encoding='utf-8')
 
     #Delete dubles#
     for label in labels:
@@ -67,9 +67,9 @@ def main(file_path):
             else:
                 visited.append(atr.find('name').text)
 
-    root.write(file_path, encoding='utf-8')
+    root.write(f"{file_path.split('.')[0]}_new.xml", encoding='utf-8')
 
 
 if __name__ == '__main__':
-    file_path = r'C:\Users\Семенов Иван\PycharmProjects\job\annotations.xml'
+    file_path = r''
     main(file_path)
