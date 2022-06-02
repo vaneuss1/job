@@ -68,8 +68,14 @@ def main(file_path):
                 visited.append(atr.find('name').text)
 
     root.write(f"{file_path.split('.')[0]}_new.xml", encoding='utf-8')
+    #short name#
+    images = root.findall('image')
+    for img in images:
+        img.attrib['name'] = img.attrib['name'].split('/')[-1]
+
+    root.write(f"{file_path.split('.')[0]}_new.xml", encoding='utf-8')
 
 
 if __name__ == '__main__':
-    file_path = r''
+    file_path = r'C:\Users\Семенов Иван\PycharmProjects\job\annotations.xml'
     main(file_path)
